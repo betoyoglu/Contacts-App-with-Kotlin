@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contacts_app_with_kotlin.R
@@ -17,11 +18,10 @@ import com.example.contacts_app_with_kotlin.ui.adapter.KisilerAdapter
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentAnasayfaBinding.inflate(inflater,container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_anasayfa,container, false)
+        binding.anasayfaFragment=this
 
-        binding.toolbarAnasayfa.title = "kişiler"
-
-        binding.rv.layoutManager = LinearLayoutManager(requireContext())
+        binding.anasayfaToolbarBaslik = "kişiler"
 
         val kisilerListesi = ArrayList<Kisiler>()
         val k1 = Kisiler(1, "ahmet", "222")
@@ -33,11 +33,7 @@ class AnasayfaFragment : Fragment() {
         kisilerListesi.add(k3)
 
         val kisilerAdapter = KisilerAdapter(requireContext(), kisilerListesi)
-        binding.rv.adapter = kisilerAdapter
-
-        binding.fab.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
-        }
+        binding.kisilerAdapter = kisilerAdapter
 
         binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextChange(newText: String): Boolean {
@@ -51,6 +47,10 @@ class AnasayfaFragment : Fragment() {
             }
         })
         return binding.root
+    }
+
+    fun fabTikla(it:View){ //view herhangi bir görsel nesne demek
+        Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
     }
 
     fun ara(aramaKelimesi:String){
