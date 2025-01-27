@@ -31,4 +31,12 @@ class KisilerDataSource {
     suspend fun sil (kisi_id:Int){
         Log.e("kişi sil", kisi_id.toString())
     }
+
+    suspend fun ara(aramaKelimesi:String): List<Kisiler> =
+        withContext(Dispatchers.IO){
+            val kisilerListesi = ArrayList<Kisiler>()
+            val k1 = Kisiler(1, "ahmet", "222")
+            kisilerListesi.add(k1)
+            return@withContext kisilerListesi
+        }
 }

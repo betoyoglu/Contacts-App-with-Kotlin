@@ -35,12 +35,12 @@ class AnasayfaFragment : Fragment() {
 
         binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextChange(newText: String): Boolean {
-                ara(newText)
+                viewModel.ara(newText)
                return true
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                ara(query)
+                viewModel.ara(query)
                 return true
             }
         })
@@ -57,8 +57,9 @@ class AnasayfaFragment : Fragment() {
         Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
     }
 
-    fun ara(aramaKelimesi:String){
-        Log.e("kişi ara", aramaKelimesi)
+    override fun onResume() {
+        super.onResume()
+        viewModel.kisileriYukle()
     }
 
 }

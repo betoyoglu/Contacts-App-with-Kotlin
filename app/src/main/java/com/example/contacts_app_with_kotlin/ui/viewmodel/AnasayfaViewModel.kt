@@ -19,6 +19,7 @@ class AnasayfaViewModel : ViewModel(){
     fun sil (kisi_id:Int){
         CoroutineScope(Dispatchers.Main).launch {
             krepo.sil(kisi_id)
+            kisileriYukle()
         }
     }
 
@@ -27,4 +28,12 @@ class AnasayfaViewModel : ViewModel(){
             kisilerListesi.value = krepo.kisileriYukle()
         }
 
-    }    }
+    }
+
+    fun ara(aramaKelimesi:String){
+        CoroutineScope(Dispatchers.Main).launch {
+            kisilerListesi.value = krepo.ara(aramaKelimesi)
+        }
+    }
+
+}

@@ -14,4 +14,6 @@ class KisilerRepository {
 
     suspend fun kisileriYukle(): List<Kisiler> = kds.kisileriYukle()
 
+    suspend fun ara(aramaKelimesi:String): List<Kisiler> = kds.ara(aramaKelimesi)
+
 }
