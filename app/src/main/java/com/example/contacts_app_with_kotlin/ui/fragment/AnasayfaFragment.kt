@@ -17,6 +17,7 @@ import com.example.contacts_app_with_kotlin.databinding.FragmentAnasayfaBinding
 import com.example.contacts_app_with_kotlin.ui.adapter.KisilerAdapter
 import com.example.contacts_app_with_kotlin.ui.viewmodel.AnasayfaViewModel
 import com.example.contacts_app_with_kotlin.ui.viewmodel.KisiKayitViewModel
+import com.example.contacts_app_with_kotlin.util.gecisYap
 
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
@@ -54,7 +55,7 @@ class AnasayfaFragment : Fragment() {
     }
 
     fun fabTikla(it:View){ //view herhangi bir görsel nesne demek
-        Navigation.findNavController(it).navigate(R.id.kisiKayitGecis)
+        Navigation.gecisYap(it, R.id.kisiKayitGecis)
     }
 
     override fun onResume() {

@@ -12,6 +12,7 @@ import com.example.contacts_app_with_kotlin.data.entity.Kisiler
 import com.example.contacts_app_with_kotlin.databinding.CardTasarimBinding
 import com.example.contacts_app_with_kotlin.ui.fragment.AnasayfaFragmentDirections
 import com.example.contacts_app_with_kotlin.ui.viewmodel.AnasayfaViewModel
+import com.example.contacts_app_with_kotlin.util.gecisYap
 import com.google.android.material.snackbar.Snackbar
 
 class KisilerAdapter(var mContext:Context, var kisilerListesi:List<Kisiler>, var viewModel: AnasayfaViewModel)
@@ -32,7 +33,7 @@ class KisilerAdapter(var mContext:Context, var kisilerListesi:List<Kisiler>, var
 
         t.cardViewSatir.setOnClickListener {
             val gecis = AnasayfaFragmentDirections.kisiDetayGecis(kisi)
-            Navigation.findNavController(it).navigate(gecis)
+            Navigation.gecisYap(it,gecis)
         }
 
         t.imageViewSil.setOnClickListener{
