@@ -18,7 +18,9 @@ import com.example.contacts_app_with_kotlin.ui.adapter.KisilerAdapter
 import com.example.contacts_app_with_kotlin.ui.viewmodel.AnasayfaViewModel
 import com.example.contacts_app_with_kotlin.ui.viewmodel.KisiKayitViewModel
 import com.example.contacts_app_with_kotlin.util.gecisYap
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AnasayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnasayfaBinding
     private lateinit var viewModel: AnasayfaViewModel

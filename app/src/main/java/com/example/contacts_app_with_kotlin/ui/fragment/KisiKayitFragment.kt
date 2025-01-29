@@ -12,7 +12,9 @@ import com.example.contacts_app_with_kotlin.R
 import com.example.contacts_app_with_kotlin.databinding.FragmentKisiKayitBinding
 import com.example.contacts_app_with_kotlin.ui.viewmodel.KisiDetayViewModel
 import com.example.contacts_app_with_kotlin.ui.viewmodel.KisiKayitViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class KisiKayitFragment : Fragment() {
     private lateinit var binding: FragmentKisiKayitBinding
     private lateinit var viewModel: KisiKayitViewModel
