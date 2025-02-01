@@ -1,10 +1,16 @@
 package com.example.contacts_app_with_kotlin.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.contacts_app_with_kotlin.data.datasource.KisilerDataSource
+import com.example.contacts_app_with_kotlin.data.entity.Kisiler
 import com.example.contacts_app_with_kotlin.data.repo.KisilerRepository
+import com.example.contacts_app_with_kotlin.room.KisilerDao
+import com.example.contacts_app_with_kotlin.room.Veritabani
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -13,14 +19,22 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideKisilerDataSource(): KisilerDataSource{
-        return KisilerDataSource()
+    fun provideKisilerDataSource(kdao:KisilerDao): KisilerDataSource{
+        return KisilerDataSource(kdao)
     }
 
     @Provides
     @Singleton
     fun provideKisilerRepository(kds:KisilerDataSource): KisilerRepository{
         return KisilerRepository(kds)
+    }
+
+    @Provides
+    @Singleton
+    fun provideKisilerDao(@ApplicationContext context:Context): KisilerDao{
+        val vt = Room.databaseBuilder(context,Veritabani::class.java, "rehber.sqlite")
+            .createFromAsset("rehber.sqlite").build()
+        return vt.getKisilerDao()
     }
 
 }
